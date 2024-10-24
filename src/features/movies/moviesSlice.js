@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchMovies = createAsyncThunk("movies1/fetchMovies", async () => {
+export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
   const response = await axios.get(
     "https://movie-management-seven.vercel.app/movies1"
   );
@@ -9,7 +9,7 @@ export const fetchMovies = createAsyncThunk("movies1/fetchMovies", async () => {
 });
 
 export const fetchMovieById = createAsyncThunk(
-  "Movies1/fetchMovieById",
+  "movies/fetchMovieById",
   async (id) => {
     const response = await axios.get(
       `https://movie-management-seven.vercel.app/movies1/${id}`
