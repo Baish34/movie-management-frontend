@@ -8,6 +8,16 @@ export const fetchMovies = createAsyncThunk("movies1/fetchMovies", async () => {
   return response.data;
 });
 
+export const fetchMovieById = createAsyncThunk(
+  "Movies1/fetchMovieById",
+  async (id) => {
+    const response = await axios.get(
+      `https://movie-management-seven.vercel.app/movies1/${id}`
+    );
+    return response.data;
+  }
+);
+
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
@@ -26,6 +36,10 @@ const moviesSlice = createSlice({
         state.books = action.payload;
       })
       .addCase(fetchMovies.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(fetchMovieById.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
